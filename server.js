@@ -1,8 +1,10 @@
+import './config.js';
 import redis from 'redis';
 import express from 'express';
 
+const PORT = 5000 || process.env.PORT;
 const app = express();
-const PORT = 5000;
+const client = redis.createClient(port);
 
 app.get('/', (req, res) => {
     res.status(200).send("Working");
