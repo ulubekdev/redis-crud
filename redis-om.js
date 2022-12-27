@@ -1,4 +1,4 @@
-import { Client, Entity, Schema, Repository } from "redis-om";
+import { Client, Entity, Schema } from "redis-om";
 
 const client = new Client();
 await client.open("redis://localhost:6379");
@@ -17,6 +17,6 @@ const userSchema = new Schema(
 	}
 );
 
-const userRepository = client.fetchRepository(userSchema);
+export const userRepository = client.fetchRepository(userSchema);
 
-export default userRepository;
+await userRepository.createIndex();
