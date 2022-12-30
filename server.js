@@ -32,7 +32,7 @@ app.post("/register", async (req, res) => {
 
 app.post("/login", async(req, res) => {
     try {
-        let user = await userRepository.search().where('username').eq(req.body.username).return.first() && await userRepository.search().where('password').eq(req.body.password).return.first();
+        let user = (await userRepository.search().where('username').eq(req.body.username).return.first()) && (await userRepository.search().where('password').eq(req.body.password).return.first())
         res.status(200).send(`Welcome ${user}`);
     } catch (error) {
 		res.status(500).send(error.message);
